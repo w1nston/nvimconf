@@ -1,6 +1,5 @@
 
-vim.keymap.set("n", "<leader>pv", vim.cmd.Vex)
-
+vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 
 -- Yank selection into system clipboard
 vim.keymap.set("v", "<leader>y", '"+y')
@@ -13,4 +12,7 @@ vim.keymap.set("n", "<C-j>", vim.cmd.cprev)
 -- Move selection
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+
+-- Make executable
+vim.keymap.set("n", "<leader>x", ':!chmod +x %')
 

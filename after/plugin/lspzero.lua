@@ -1,4 +1,5 @@
 -- https://lsp-zero.netlify.app/v3.x/getting-started.html
+-- https://lsp-zero.netlify.app/v3.x/language-server-configuration.html <--
 
 local lsp = require('lsp-zero')
 
