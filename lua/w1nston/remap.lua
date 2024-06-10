@@ -16,3 +16,6 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 -- Make executable
 vim.keymap.set("n", "<leader>x", ':!chmod +x %')
 
+-- Start new tmux session
+--vim.keymap.set("n", "<silent> <C-f>", ':silent !tmux neww tmux-sessionizer<CR>')
+
