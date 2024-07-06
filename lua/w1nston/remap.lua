@@ -17,5 +17,14 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 vim.keymap.set("n", "<leader>x", ':!chmod +x %')
 
 -- Start new tmux session
---vim.keymap.set("n", "<silent> <C-f>", ':silent !tmux neww tmux-sessionizer<CR>')
+vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
+
+-- load refactoring Telescope extension
+require("telescope").load_extension("refactoring")
+
+vim.keymap.set(
+	{"n", "x"},
+	"<leader>rr",
+	function() require('telescope').extensions.refactoring.refactors() end
+)
 
