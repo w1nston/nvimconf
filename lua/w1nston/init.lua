@@ -1,15 +1,25 @@
+require("w1nston.set")
 require("w1nston.remap")
+require("w1nston.lazy_init")
 
-vim.opt.cursorline = true
 
-vim.opt.number = true
-vim.opt.relativenumber = true
-vim.opt.scrolloff = 8
+local augroup = vim.api.nvim_create_augroup
+local w1nston_group = augroup('w1nston', {})
 
--- Spaces vs Tabs
-vim.opt.tabstop = 4
-vim.opt.softtabstop = 4
-vim.opt.shiftwidth = 4
-vim.opt.expandtab = true
-vim.opt.smartindent = true
+local autocmd = vim.api.nvim_create_autocmd
 
+autocmd('LspAttach', {
+    group = w1nston_group,
+    callback = function(e)
+        local opts = { buffer = e.buf }
+
+        vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
+        vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts) -- TODO: Test this out if this is a good keymap for me...
+        vim.keymap.set("n", "<leader>vws", function() vim.lsp.buf.workspace_symbol() end, opts)
+        vim.keymap.set("n", "<leader>vd", function() vim.lsp.diagnostic.open_float() end, opts)
+        vim.keymap.set("n", "<leader>vca", function() vim.lsp.buf.code_action() end, opts)
+        vim.keymap.set("n", "<leader>vrr", function() vim.lsp.buf.references() end, opts)
+        vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, opts)
+        vim.keymap.set("n", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
+    end
+})
