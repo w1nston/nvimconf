@@ -86,20 +86,6 @@ return {
 			},
 		})
 
-        -- To make astro language server find correct typescript "engine"
-        --[[
-        vim.lsp.config("astro", {
-            before_init = function(_, config)
-                local workspace_tsdk = require("lspconfig.util").get_typescript_server_path(config.root_dir)
-                config.init_options = vim.tbl_deep_extend("force", config.init_options or {}, {
-                    typescript = {
-                        tsdk = workspace_tsdk ~= "" and workspace_tsdk or "/usr/lib/node_modules/typescript/lib",
-                    },
-                })
-            end,
-        })
-        ]]--
-
 		cmp.setup({
 			snippet = {
 				expand = function(args)
