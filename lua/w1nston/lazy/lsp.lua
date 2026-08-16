@@ -13,6 +13,7 @@ return {
 		"L3MON4D3/LuaSnip",
 		"saadparwaiz1/cmp_luasnip",
 		"j-hui/fidget.nvim",
+        "seblyng/roslyn.nvim",
 	},
 
 	config = function()
@@ -30,9 +31,15 @@ return {
 		)
 
 		require("fidget").setup({})
-		require("mason").setup()
+		require("mason").setup({
+            registries = {
+                "github:mason-org/mason-registry",
+                "github:Crashdummyy/mason-registry",
+            },
+        })
 		require("mason-lspconfig").setup({
 			ensure_installed = {
+                "astro",
 				"csharp_ls",
 				"cssls",
 				"html",
@@ -47,7 +54,7 @@ return {
 				end,
 
 				["lua_ls"] = function()
-					local lspconfig = vim.lsp.config -- require("lspconfig")
+					local lspconfig = vim.lsp.config
 
 					lspconfig.lua_ls.setup({
 						capabilities = capabilities,
@@ -78,6 +85,20 @@ return {
 				end,
 			},
 		})
+
+        -- To make astro language server find correct typescript "engine"
+        --[[
+        vim.lsp.config("astro", {
+            before_init = function(_, config)
+                local workspace_tsdk = require("lspconfig.util").get_typescript_server_path(config.root_dir)
+                config.init_options = vim.tbl_deep_extend("force", config.init_options or {}, {
+                    typescript = {
+                        tsdk = workspace_tsdk ~= "" and workspace_tsdk or "/usr/lib/node_modules/typescript/lib",
+                    },
+                })
+            end,
+        })
+        ]]--
 
 		cmp.setup({
 			snippet = {
