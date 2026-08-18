@@ -14,6 +14,7 @@ autocmd('LspAttach', {
         local opts = { buffer = e.buf }
 
         vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
+        vim.keymap.set("n", "<M-i>", function() require("telescope.builtin").lsp_implementations() end, opts)
         vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts) -- TODO: Test this out if this is a good keymap for me...
         vim.keymap.set("n", "<leader>vws", function() vim.lsp.buf.workspace_symbol() end, opts)
         vim.keymap.set("n", "<leader>vd", function() vim.lsp.diagnostic.open_float() end, opts)

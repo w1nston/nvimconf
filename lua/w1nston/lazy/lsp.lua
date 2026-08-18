@@ -37,6 +37,10 @@ return {
                 "github:Crashdummyy/mason-registry",
             },
         })
+		require("roslyn").setup({
+			lock_target = true,
+		})
+
 		vim.lsp.config("*", {
 			capabilities = capabilities,
 		})
