@@ -1,3 +1,5 @@
+-- NOTE: Keybindings for rename or other keybindings regarding lsp are found in w1nston/init.lua
+
 return {
 	"neovim/nvim-lspconfig",
 
