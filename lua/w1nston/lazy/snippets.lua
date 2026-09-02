@@ -13,7 +13,9 @@ return {
         })
 
         local ls = require("luasnip")
-        ls.filetype_extend("javascript", { "jsdoc" })
+
+        ls.filetype_extend("javascript", { "jsdoc", "typescript" })
+        ls.filetype_extend("typescriptreact", { "typescript" })
 
         vim.keymap.set({"i", "s"}, "<C-E>", function()
             if ls.choice_active() then

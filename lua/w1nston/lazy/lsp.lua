@@ -94,10 +94,12 @@ return {
 				["<C-Space>"] = cmp.mapping.complete(),
 				["<Tab>"] = cmp.mapping(function(fallback)
 					local luasnip = require("luasnip")
-					if cmp.visible() then
-						cmp.confirm({ select = true })
-					elseif luasnip.expand_or_jumpable() then
-						luasnip.expand_or_jump()
+                    if luasnip.expandable() then
+                        luasnip.expand()
+                    elseif cmp.visible() then
+                        cmp.confirm({ select = true })
+                    elseif luasnip.jumpable(1) then
+                        luasnip.jump(1)
 					else
 						fallback()
 					end
