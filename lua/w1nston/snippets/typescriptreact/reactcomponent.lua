@@ -11,7 +11,6 @@ return {
       export function {}({{}}: {}Props) {{
 
         return null;
-
       }}
     ]], {
         d(1, component_name_from_filename),
